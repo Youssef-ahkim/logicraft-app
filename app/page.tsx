@@ -1,11 +1,19 @@
+import { Inter } from 'next/font/google';
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+
+// Load the Google Font
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '700'], // Optional: Add specific font weights
+});
+
 
 export default function Home() {
   return (
     <div
       id="home"
-      className="h-[89vh] mt-[3rem] sm:mt-[5rem] xl-[5rem] flex flex-col lg:flex-row justify-around items-center bg-gray-100 px-4"
+      className={`${inter.className} h-[89vh] mt-[5rem] sm:mt-[5rem] xl:mt-[5rem] flex flex-col lg:flex-row justify-center items-center gap-[5%] bg-gray-100 px-4`}
     >
       {/* Section 1 */}
       <section className="flex flex-col justify-center gap-6 items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center mb-6 lg:mb-0">
@@ -20,6 +28,7 @@ export default function Home() {
           href="https://wa.me/+212614803118"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Contact us on WhatsApp"
           className="flex items-center justify-center"
         >
           <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 md:py-8 md:px-8 rounded-full shadow-lg text-base md:text-lg transition-all">
@@ -29,6 +38,7 @@ export default function Home() {
               alt="WhatsApp Icon"
               width={30}
               height={30}
+              priority
             />
             Contact us
           </Button>
@@ -40,44 +50,50 @@ export default function Home() {
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-1"
           src="/paypal.png"
-          alt="paypal Icon"
+          alt="PayPal Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-2"
           src="/wise.png"
-          alt="wise Icon"
+          alt="Wise Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-3"
           src="/payooner.png"
-          alt="payooner Icon"
+          alt="Payoneer Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-4"
           src="/woo.png"
-          alt="woo Icon"
+          alt="WooCommerce Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-5"
           src="/mercury.png"
-          alt="mercury Icon"
+          alt="Mercury Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
         <Image
           className="w-[100px] md:w-[150px] lg:w-[200px] m-3 transition-transform duration-500 float-animation-6"
           src="/stripe.png"
-          alt="stripe Icon"
+          alt="Stripe Icon"
           width={1024}
           height={300}
+          loading="lazy"
         />
       </section>
     </div>
