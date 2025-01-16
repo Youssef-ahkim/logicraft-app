@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-html {
+html, body {
+  overscroll-behavior: none; /* Prevent overscroll behavior */
   scroll-behavior: smooth;
 }
+
+
 
 nav {
   background-color: #cfdced;
@@ -84,4 +86,39 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation-1 {
+  animation: float 3s ease-in-out infinite;
+}
+
+.float-animation-2 {
+  animation: float 4s ease-in-out infinite;
+}
+
+.float-animation-3 {
+  animation: float 5s ease-in-out infinite;
+}
+
+.float-animation-4 {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-5 {
+  animation: float 7s ease-in-out infinite;
+}
+
+.float-animation-6 {
+  animation: float 8s ease-in-out infinite;
 }
