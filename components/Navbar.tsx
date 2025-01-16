@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 function Navbar() {
     return (
-        <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm fixed z-10 top-0 w-full ">
+        <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm absolute z-10 top-0 w-full ">
             {/* Logo */}
             <a href="#home">
                 <Image
