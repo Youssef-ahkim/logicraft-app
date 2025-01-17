@@ -48,7 +48,7 @@ export default function Pricing() {
   return (
     <div
       id="services"
-      className={`${inter.className} min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-16`}
+      className={`${inter.className} mt-[2rem] min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-16`}
     >
       <div className="w-full flex flex-col md:flex-row justify-between items-center gap-12">
         <div className="text-left md:w-1/2">
