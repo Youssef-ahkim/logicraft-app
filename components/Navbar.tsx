@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 
 function Navbar() {
     return (
-        <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm absolute z-10 top-0 w-full ">
+        <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm absolute z-10 top-0 w-full  ">
             {/* Logo */}
             <a href="#home">
                 <Image
-                    className="cursor-pointer"
+                    className="cursor-pointer w-[120px] md:w-[180px] lg:w-[200] sm:w-[120px]"
                     src="/logo.png"
                     alt="Company Logo"
                     width={180}  
