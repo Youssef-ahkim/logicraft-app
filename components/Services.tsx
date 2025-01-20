@@ -15,37 +15,41 @@ const roboto = Roboto({
 });
 
 export default function Pricing() {
-  const textRef = useRef(null);
-  const pricingRefs = useRef([]);
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const pricingRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1, // Trigger the animation when 10% of the element is visible
+      threshold: 0.1,
     };
-
-    const handleIntersection = (entries: any[]) => {
-      entries.forEach(entry => {
+  
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-slideIn');
         }
       });
     };
-
+  
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    if (textRef.current) {
-      observer.observe(textRef.current);
+  
+    // Copy ref values to variables inside the effect
+    const currentTextRef = textRef.current;
+    const currentPricingRefs = pricingRefs.current;
+  
+    if (currentTextRef) {
+      observer.observe(currentTextRef);
     }
-
-    pricingRefs.current.forEach((el) => {
+  
+    currentPricingRefs.forEach((el) => {
       if (el) observer.observe(el);
     });
-
+  
     return () => {
-      if (textRef.current) {
-        observer.unobserve(textRef.current);
+      if (currentTextRef) {
+        observer.unobserve(currentTextRef);
       }
-      pricingRefs.current.forEach((el) => {
+      currentPricingRefs.forEach((el) => {
         if (el) observer.unobserve(el);
       });
     };
@@ -110,7 +114,11 @@ export default function Pricing() {
           {pricingPlans.map((plan, index) => (
             <div
               key={index}
-              ref={el => pricingRefs.current[index] = el}
+              ref={(el) => {
+                if (el) {
+                  pricingRefs.current[index] = el;
+                }
+              }}
               className="relative hover:scale-105 bg-white w-full sm:w-[45%] max-w-[400px] p-6 md:p-7 rounded-3xl shadow-2xl transform opacity-0 translate-x-20 transition-all duration-1000 ease-out"
             >
               <div className="relative z-10">
