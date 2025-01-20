@@ -119,9 +119,9 @@ export default function Pricing() {
                   pricingRefs.current[index] = el;
                 }
               }}
-              className="relative hover:scale-105 bg-white w-full sm:w-[45%] max-w-[400px] p-6 md:p-7 rounded-3xl shadow-2xl transform opacity-0 translate-x-20 transition-all duration-1000 ease-out"
+              className="relative flex-grow bg-white w-full sm:w-[45%] max-w-[400px] p-6 md:p-7 rounded-3xl shadow-2xl transform opacity-0 translate-x-20 transition-all duration-1000 ease-out"
             >
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <h2 className="text-2xl md:text-3xl font-bold text-purple-700 text-center mb-3">
                   {plan.name}
                 </h2>
@@ -129,7 +129,7 @@ export default function Pricing() {
                   <p className="text-3xl md:text-4xl font-extrabold text-gray-900">{plan.price}</p>
                   <p className="text-lg text-gray-500 line-through">{plan.oldPrice}</p>
                 </div>
-                <ul className="mb-3 space-y-2 md:space-y-3">
+                <ul className="mb-3 space-y-2 md:space-y-3 flex-grow">
                   {plan.features.map((feature, i) => (
                     <li
                       key={i}
@@ -140,7 +140,7 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-auto">
                   <a
                     href="https://wa.me/+212614803118"
                     target="_blank"

@@ -17,7 +17,7 @@ export default function Home() {
       {/* Section 1 */}
       <section className="animate-slideInL flex flex-col justify-evenly sm:justify-center items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center lg:mb-0">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-          Launch Your <br />
+          Launch Your US<br />
           LLC Today
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
