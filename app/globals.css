@@ -129,30 +129,99 @@ body {
 
 
 
-@media (max-width: 640px) {
-  #services {
-    padding: 2rem;
-  }
 
-  h1 {
-    font-size: 2rem;
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
   }
+  100% {
+      opacity: 1;
+  }
+}
 
-  .pricing-card {
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem;
+@keyframes slideInL {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
   }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+@keyframes slideInR {
+  0% {
+      transform: translateX(+100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
 
-  .pricing-card h2 {
-    font-size: 1.5rem;
-  }
 
-  .pricing-card p {
-    font-size: 1.25rem;
+@keyframes logoSlideIn {
+  0% {
+      transform: translateX(-100%);
   }
+  50% {
+      transform: translateX(-50%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
 
-  .pricing-card ul {
-    padding: 0;
+@keyframes linksFadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(-20px);
   }
+  50% {
+      opacity: 0.5;
+      transform: translateY(-10px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes buttonBounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-10px);
+  }
+  60% {
+      transform: translateY(-5px);
+  }
+}
+
+
+.animate-fadeIn {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.animate-logoSlideIn {
+  animation: logoSlideIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animate-linksFadeIn {
+  animation: linksFadeIn 1.5s ease-in-out;
+}
+
+.animate-buttonBounce {
+  animation: buttonBounce 2s ease-in-out infinite;
+}
+
+
+.animate-slideInL {
+  animation: slideInL 2s ease-in-out;
+}
+
+.animate-slideInR {
+  animation: slideInR 2s ease-in-out;
 }

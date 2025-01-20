@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <div
       id="home"
-      className={`${inter.className} h-[89vh] mt-[5rem] xl:mt-[5rem] lg:mt-[5rem] md:mt-[4rem] flex flex-col lg:flex-row justify-center items-center gap-[2%] bg-gray-100 px-4`}
+      className={`${inter.className}  overflow-hidden h-[89vh] mt-[5rem] xl:mt-[5rem] lg:mt-[5rem] md:mt-[4rem] flex flex-col lg:flex-row justify-center items-center gap-[2%] bg-gray-100 px-4`}
     >
       {/* Section 1 */}
-      <section className="flex flex-col justify-evenly sm:justify-center items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center lg:mb-0">
+      <section className="animate-slideInL flex flex-col justify-evenly sm:justify-center items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center lg:mb-0">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
           Launch Your US <br />
           LLC Today
@@ -45,7 +45,7 @@ export default function Home() {
       </section>
 
       {/* Section 2 */}
-      <section className="flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl p-6 lg:p-10">
+      <section className="animate-slideInR flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl p-6 lg:p-10">
         {[
           { src: '/paypal.png', alt: 'PayPal Icon' },
           { src: '/wise.png', alt: 'Wise Icon' },
