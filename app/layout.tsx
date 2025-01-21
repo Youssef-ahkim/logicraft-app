@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 import About from "@/components/About";
+import ContactUs from "@/components/ContactUs";
 
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
         {children}
         <Services />
         <About  />
+        <ContactUs  />
       </body>
     </html>
   );
