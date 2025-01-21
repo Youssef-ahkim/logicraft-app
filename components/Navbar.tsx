@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 function Navbar() {
     return (
         <>
-            <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm absolute z-10 top-0 w-full animate-fadeIn">
+            <nav className="flex justify-between items-center py-4 px-6 bg-gray-100 shadow-sm  w-full animate-fadeIn">
                 {/* Logo */}
                 <a href="#home" className='animate-logoSlideIn'>
                     <Image
@@ -23,8 +23,8 @@ function Navbar() {
                 {/* Navigation Links */}
                 <ul className="hidden md:flex gap-8 text-lg font-medium text-gray-700">
                     <li className="hover:text-blue-500 transition animate-linksFadeIn"><a href="#home">Home</a></li>
-                    <li className="hover:text-blue-500 transition animate-linksFadeIn"><a href="#about">About</a></li>
                     <li className="hover:text-blue-500 transition animate-linksFadeIn"><a href="#services">Our Services</a></li>
+                    <li className="hover:text-blue-500 transition animate-linksFadeIn"><a href="#about">About</a></li>
                     <li className="hover:text-blue-500 transition animate-linksFadeIn"><a href="#contact">Contact</a></li>
                 </ul>
 

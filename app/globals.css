@@ -214,7 +214,7 @@ body {
 }
 
 .animate-buttonBounce {
-  animation: buttonBounce 2s ease-in-out infinite;
+  animation: buttonBounce 1s ease-in-out infinite;
 }
 
 
