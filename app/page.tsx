@@ -45,7 +45,7 @@ export default function Home() {
       </section>
 
       {/* Section 2 */}
-      <section className="animate-slideInR  flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl px-6 lg:p-10">
+      <section className="animate-slideInR  flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl px-6 pt-5 lg:p-10">
         {[
           { src: '/paypal.png', alt: 'PayPal Icon' },
           { src: '/wise.png', alt: 'Wise Icon' },

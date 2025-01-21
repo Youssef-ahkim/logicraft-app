@@ -29,7 +29,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 variants={sectionVariants}
             >
-                <h2 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-wide">
+                <h2 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-100 to-gray-50">
                     About Us
                 </h2>
                 <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
@@ -50,7 +50,7 @@ export default function About() {
                 variants={sectionVariants}
             >
                 {/* Mission */}
-                <div className="bg-white p-8 rounded-xl shadow-xl transition-transform transform xl:hover:scale-105 lg:hover:scale-105 md:hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+                <div className=" bg-white p-8 rounded-xl shadow-xl transition-transform transform xl:hover:scale-105 lg:hover:scale-105 md:hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
                     <h3 className="text-2xl md:text-3xl font-semibold text-purple-700 mb-4">
                         Our Mission
                     </h3>
@@ -91,10 +91,19 @@ export default function About() {
                     rel="noopener noreferrer"
                     aria-label="Contact us on WhatsApp"
                 >
-                    <Button className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-8 rounded-full shadow-xl text-lg transition-all duration-300 ease-in-out">
+                    <Button className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-8 rounded-full shadow-xl text-lg transition-all duration-300 ease-in-out transform hover:scale-105">
                         Contact Us
                     </Button>
                 </a>
+                <p className="text-sm mt-4">
+                    Or email us at{" "}
+                    <a
+                        href="mailto:info@yourbusiness.com"
+                        className="text-yellow-300 underline hover:text-yellow-500 transition-all duration-200"
+                    >
+                        logicraftagency@gmail.com
+                    </a>
+                </p>
             </motion.section>
         </div>
     );
