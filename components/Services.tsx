@@ -97,7 +97,7 @@ export default function Pricing() {
   return (
     <div
       id="services"
-      className={`${inter.className} mt-8 pt-4 pb-12 min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700  overflow-hidden`}
+      className={`${inter.className}  pt-4 pb-12 min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700  overflow-hidden`}
 
     >
       <div className="w-full text-center mb-10">
