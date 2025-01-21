@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div
       id="home"
-      className={`${inter.className}  overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gray-100 px-4`}
+      className={`${inter.className} mb-[2rem]  overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gray-100 px-4`}
     >
       {/* Section 1 */}
       <section className="animate-slideInL flex flex-col justify-evenly sm:justify-center items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center lg:mb-0">
