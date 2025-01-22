@@ -48,7 +48,7 @@ export default function Home() {
         >
           <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 md:py-8 md:px-8 rounded-full shadow-lg text-base md:text-lg transition-all">
             <Image
-              className="w-[20px] md:w-[30px]"
+              className="w-[20px] md:w-[30px] "
               src="/whatssap.png"
               alt="WhatsApp Icon"
               width={30}
@@ -63,7 +63,7 @@ export default function Home() {
       {/* Section 2 */}
       <section className="animate-slideInR flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl px-6 pt-5 lg:p-10">
         {services.map((image, index) => (
-          <div key={index} className="m-3 transition-transform duration-500 hover:scale-105">
+          <div key={index} className="m-3 transition-transform duration-500 float-animation-1">
             <Image
               className="w-[100px] md:w-[150px] lg:w-[200px]"
               src={image.src}

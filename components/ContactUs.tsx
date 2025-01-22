@@ -1,11 +1,17 @@
 "use client";
 
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { FiMail, FiPhone, FiArrowRight } from "react-icons/fi";
 
 const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
@@ -14,18 +20,31 @@ const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
-const footerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
 
 export default function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
+
+  const validateForm = () => {
+    const newErrors = {
+      name: !name.trim(),
+      email: !email.trim(),
+      message: !message.trim(),
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(Boolean);
+  };
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     const mailtoLink = `mailto:logicraftagency@gmail.com?subject=Contact%20Us&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0A%0A${encodeURIComponent(message)}`;
     window.location.href = mailtoLink;
   };
@@ -33,115 +52,188 @@ export default function ContactUs() {
   return (
     <div
       id="contact-us"
-      className={`${inter.className} min-h-screen flex flex-col justify-center items-center bg-gray-50 p-8`}
+      className={`${inter.className} min-h-screen flex items-center bg-gradient-to-br from-indigo-50 to-blue-50 relative overflow-hidden`}
     >
-      {/* Header Section */}
-      <motion.section
-        className="text-center mb-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        variants={sectionVariants}
-      >
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Get In Touch
-        </h1>
-        <p className="text-lg md:text-xl text-gray-600">
-          We{"'"}re here to help you with any questions or concerns.
-        </p>
-      </motion.section>
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute -top-20 -left-20 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute -bottom-40 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
 
-      {/* Contact Form Section */}
-      <motion.section
-        className="w-full max-w-3xl bg-white p-8 rounded-xl shadow-lg"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        variants={sectionVariants}
-      >
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+      <div className="container mx-auto px-4 py-16 relative">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={sectionVariants}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Left Panel - Contact Information */}
+          <div className="bg-gradient-to-br from-indigo-600 to-blue-600 p-12 text-white relative">
+            <div className="absolute inset-0 opacity-10 bg-noise-pattern" />
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
             >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-3"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-3"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="mt-1 block w-full border min-h-[8rem] max-h-[8rem] h-[8rem] border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-3"
-              required
-            ></textarea>
-          </div>
-          <div className="flex justify-center">
-            <Button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-md shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
-            >
-              Send Message
-            </Button>
-          </div>
-        </form>
-      </motion.section>
+              <h2 className={`${spaceGrotesk.className} text-5xl font-bold mb-12 leading-tight`}>
+                Let{"'"}s Build<br />Something Great
+              </h2>
+              <div className="space-y-8">
+                <motion.div
+                  className="flex items-start space-x-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                    <FiMail className="text-2xl text-white/90" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 text-white/90">Email Us</h3>
+                    <a
+                      href="mailto:logicraftagency@gmail.com"
+                      className="text-white/75 hover:text-white transition-colors duration-200"
+                    >
+                      logicraftagency@gmail.com
+                    </a>
+                  </div>
+                </motion.div>
 
-      {/* Footer Section */}
-      <motion.section
-        className="text-center mt-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        variants={footerVariants}
-      >
-        <p className="text-sm text-gray-600">
-          Or email us directly at{" "}
-          <a
-            href="mailto:logicraftagency@gmail.com"
-            className="text-blue-600 underline hover:text-blue-700 transition-all duration-200"
-          >
-            logicraftagency@gmail.com
-          </a>
-        </p>
-      </motion.section>
+                <motion.div
+                  className="flex items-start space-x-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                    <FiPhone className="text-2xl text-white/90" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 text-white/90">Call Us</h3>
+                    <p className="text-white/75 hover:text-white transition-colors duration-200">
+                      +212 6 14 80 31 18
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Panel - Contact Form */}
+          <div className="p-12">
+            <motion.form
+              onSubmit={handleSubmit}
+              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              noValidate
+            >
+              <div className="space-y-8">
+                {/* Name Field */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setErrors(prev => ({ ...prev, name: false }));
+                    }}
+                    className={`w-full px-4 py-3 border-b-2 ${
+                      errors.name ? 'border-red-500' : 'border-gray-200'
+                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors peer`}
+                    placeholder=" "
+                    required
+                  />
+                  <label className="absolute left-4 top-3.5 text-gray-400 transition-all duration-200 pointer-events-none 
+                    peer-[:not(:placeholder-shown)]:-top-4
+                    peer-[:not(:placeholder-shown)]:text-sm
+                    peer-focus:-top-4
+                    peer-focus:text-sm
+                    peer-focus:text-indigo-600">
+                    Name
+                  </label>
+                  {errors.name && (
+                    <p className="text-red-500 text-sm mt-1">Name is required</p>
+                  )}
+                </div>
+
+                {/* Email Field */}
+                <div className="relative">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setErrors(prev => ({ ...prev, email: false }));
+                    }}
+                    className={`w-full px-4 py-3 border-b-2 ${
+                      errors.email ? 'border-red-500' : 'border-gray-200'
+                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors peer`}
+                    placeholder=" "
+                    required
+                  />
+                  <label className="absolute left-4 top-3.5 text-gray-400 transition-all duration-200 pointer-events-none 
+                    peer-[:not(:placeholder-shown)]:-top-4
+                    peer-[:not(:placeholder-shown)]:text-sm
+                    peer-focus:-top-4
+                    peer-focus:text-sm
+                    peer-focus:text-indigo-600">
+                    Email
+                  </label>
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">Valid email is required</p>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div className="relative">
+                  <textarea
+                    value={message}
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                      setErrors(prev => ({ ...prev, message: false }));
+                    }}
+                    className={`w-full px-4 py-3 border-b-2 ${
+                      errors.message ? 'border-red-500' : 'border-gray-200'
+                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors min-h-[150px] peer`}
+                    placeholder=" "
+                    required
+                  />
+                  <label className="absolute left-4 top-3.5 text-gray-400 transition-all duration-200 pointer-events-none 
+                    peer-[:not(:placeholder-shown)]:-top-4
+                    peer-[:not(:placeholder-shown)]:text-sm
+                    peer-focus:-top-4
+                    peer-focus:text-sm
+                    peer-focus:text-indigo-600">
+                    Message
+                  </label>
+                  {errors.message && (
+                    <p className="text-red-500 text-sm mt-1">Message is required</p>
+                  )}
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full group flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-5 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100"
+              >
+                <span className="font-semibold tracking-wide">Send Message</span>
+                <FiArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </Button>
+            </motion.form>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
