@@ -76,7 +76,7 @@ export default function Pricing() {
       {/* Title Section */}
       <div 
         ref={titleRef}
-        className={`w-full text-center mb-14 transition-opacity duration-1000 will-change-transform ${
+        className={`w-full text-center mb-14 transition-opacity duration-2000 will-change-transform ${
           titleInView ? 'opacity-100' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -98,7 +98,7 @@ export default function Pricing() {
       {/* Bottom Text */}
       <div
         ref={bottomRef}
-        className={`mt-12 text-center text-purple-300 text-sm transition-opacity duration-1000 will-change-transform ${
+        className={`mt-12 text-center text-purple-300 text-sm transition-opacity duration-2000 will-change-transform ${
           bottomInView ? 'opacity-100' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -120,16 +120,16 @@ function PricingCard({ plan, index }: PricingCardProps) {
   return (
     <div
       ref={ref}
-      className={`relative w-full sm:w-[350px] bg-gray-800 rounded-2xl p-8 border-2 border-purple-900/50 transition-all duration-500 ease-out shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 will-change-transform ${
+      className={`relative w-full sm:w-[350px] bg-gray-800 rounded-2xl p-8 border-2 border-purple-900/50 transition-all duration-1000 ease-out shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 will-change-transform ${
         inView 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-20'
       } ${
-        index % 2 === 0 ? 'delay-75' : 'delay-150'
+        index % 2 === 0 ? 'delay-400' : 'delay-800'
       }`}
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+      <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl" />
       </div>
 
@@ -156,10 +156,10 @@ function PricingCard({ plan, index }: PricingCardProps) {
         {plan.features.map((feature, i) => (
           <li 
             key={feature}
-            className={`flex items-center gap-3 text-purple-100 transition-opacity duration-300 ${
+            className={`flex items-center gap-3 text-purple-100 transition-opacity duration-700 ${
               inView ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transitionDelay: `${i * 50}ms` }}
+            style={{ transitionDelay: `${i * 150}ms` }}
           >
             <FiCheckCircle className="flex-shrink-0 text-pink-400" />
             <span className="flex-1">{feature}</span>

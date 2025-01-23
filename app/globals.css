@@ -236,23 +236,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @keyframes float {
   0%, 100% {
     transform: translateY(-5px) scale(0.95);
