@@ -70,7 +70,7 @@ export default function Home() {
   {services.map((image, index) => (
     <div
       key={index}
-      className="icon-float p-2 sm:p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl backdrop-blur-sm border-2 border-blue-200/20 flex items-center justify-center"
+      className=" p-2 sm:p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl backdrop-blur-sm border-2 border-blue-200/20 flex items-center justify-center"
     >
       <Image
         className="w-full max-w-[100px] sm:max-w-[130px] md:max-w-[160px] lg:max-w-[200px]"
