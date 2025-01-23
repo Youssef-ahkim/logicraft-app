@@ -3,7 +3,6 @@
 import { Inter, Open_Sans } from 'next/font/google';
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { motion } from 'framer-motion';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,7 +32,7 @@ export default function Home() {
       className={`${inter.variable} ${openSans.variable} pt-5 overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 px-4`}
     >
       {/* Section 1 */}
-      <motion.section
+      <section
 
         className="animate-slideInL flex flex-col justify-evenly  items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-gray-800/80 rounded-2xl backdrop-blur-lg shadow-2xl p-6 lg:p-10 text-center lg:mb-0"
       >
@@ -62,29 +61,16 @@ export default function Home() {
             <span>Contact us</span>
           </Button>
         </a>
-      </motion.section>
+      </section>
 
-
-{/* Section 2 - Infinite floating animation */}
-<motion.section
-
+{/* Section 2 - CSS animated version */}
+<section
   className="animate-slideInR grid grid-cols-2 gap-3 sm:gap-5 bg-gray-800/80 backdrop-blur-lg w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8"
 >
   {services.map((image, index) => (
-    <motion.div
+    <div
       key={index}
-      className="p-2 sm:p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl backdrop-blur-sm border-2 border-blue-200/20 flex items-center justify-center"
-      animate={{
-        y: [-5, 5], // Moves up and down
-        scale: [0.95, 1.05] // Gentle pulse effect
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        repeatType: 'mirror',
-        delay: index * 0.2,
-        ease: "easeInOut"
-      }}
+      className="icon-float p-2 sm:p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl backdrop-blur-sm border-2 border-blue-200/20 flex items-center justify-center"
     >
       <Image
         className="w-full max-w-[100px] sm:max-w-[130px] md:max-w-[160px] lg:max-w-[200px]"
@@ -94,9 +80,9 @@ export default function Home() {
         height={300}
         loading="lazy"
       />
-    </motion.div>
+    </div>
   ))}
-</motion.section>
+</section>
     </div>
   );
 }
