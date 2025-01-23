@@ -34,10 +34,8 @@ export default function Home() {
     >
       {/* Section 1 */}
       <motion.section
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex flex-col justify-evenly  items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-gray-800/80 rounded-2xl backdrop-blur-lg shadow-2xl p-6 lg:p-10 text-center lg:mb-0"
+
+        className="animate-slideInL flex flex-col justify-evenly  items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-gray-800/80 rounded-2xl backdrop-blur-lg shadow-2xl p-6 lg:p-10 text-center lg:mb-0"
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-300 bg-clip-text text-transparent leading-tight mb-6">
           Launch Your US<br />
@@ -69,10 +67,8 @@ export default function Home() {
 
 {/* Section 2 - Infinite floating animation */}
 <motion.section
-  initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1.2, delay: 0.2 }}
-  className="grid grid-cols-2 gap-3 sm:gap-5 bg-gray-800/80 backdrop-blur-lg w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8"
+
+  className="animate-slideInR grid grid-cols-2 gap-3 sm:gap-5 bg-gray-800/80 backdrop-blur-lg w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8"
 >
   {services.map((image, index) => (
     <motion.div
