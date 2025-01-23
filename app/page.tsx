@@ -1,18 +1,20 @@
-import { Inter, Open_Sans } from 'next/font/google';
-import { Button } from "@/components/ui/button"; // Ensure this path is correct
-import Image from "next/image";
+'use client'
 
-// Load the Google Fonts
+import { Inter, Open_Sans } from 'next/font/google';
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { motion } from 'framer-motion';
+
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '700'], // Use 400 for regular text and 700 for bold
-  variable: '--font-inter', // Define a CSS variable for Inter
+  weight: ['400', '700'],
+  variable: '--font-inter',
 });
 
 const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '600'], // Use 400 for regular text and 600 for semi-bold
-  variable: '--font-open-sans', // Define a CSS variable for Open Sans
+  weight: ['400', '600'],
+  variable: '--font-open-sans',
 });
 
 const services = [
@@ -28,53 +30,77 @@ export default function Home() {
   return (
     <div
       id="home"
-      className={`${inter.variable} ${openSans.variable} overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gray-100 px-4`}
+      className={`${inter.variable} ${openSans.variable} pt-5 overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 px-4`}
     >
       {/* Section 1 */}
-      <section className="animate-slideInL flex flex-col justify-evenly items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-slate-50 rounded-2xl shadow-xl p-6 lg:p-10 text-center lg:mb-0">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 font-sans">
+      <motion.section
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col justify-evenly  items-center w-full lg:w-[45%] h-auto lg:h-[85%] bg-gray-800/80 rounded-2xl backdrop-blur-lg shadow-2xl p-6 lg:p-10 text-center lg:mb-0"
+      >
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-300 bg-clip-text text-transparent leading-tight mb-6">
           Launch Your US<br />
           LLC Today
         </h1>
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed font-sans">
-          We Set Up Your Company <span className="font-bold">+</span> Registered Agent <span className="font-bold">+</span> EIN Number <span className="font-bold">+</span> BOI Form <span className="font-bold">+</span> US Phone Number <span className="font-bold">+</span> Stripe Account <span className="font-bold">+</span> PayPal Business <span className="font-bold">+</span> Wise Business <span className="font-bold">+</span> Mercury Business <span className="font-bold">+</span> Payoneer Business
+        <p className="text-lg md:text-xl lg:text-2xl text-purple-100 mb-8 leading-relaxed">
+          We Set Up Your Company <span className="font-bold text-purple-300">+</span> Registered Agent <span className="font-bold text-purple-300">+</span> EIN Number <span className="font-bold text-purple-300">+</span> BOI Form <span className="font-bold text-purple-300">+</span> US Phone Number <span className="font-bold text-purple-300">+</span> Stripe Account <span className="font-bold text-purple-300">+</span> PayPal Business <span className="font-bold text-purple-300">+</span> Wise Business <span className="font-bold text-purple-300">+</span> Mercury Business <span className="font-bold text-purple-300">+</span> Payoneer Business
         </p>
         <a
           href="https://wa.me/+212614803118"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Contact us on WhatsApp"
           className="flex items-center justify-center"
         >
-          <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 md:py-8 md:px-8 rounded-full shadow-lg text-base md:text-lg transition-all">
+          <Button className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-3 px-6 md:py-8 md:px-8 rounded-full shadow-lg text-base md:text-lg">
             <Image
-              className="w-[20px] md:w-[30px] "
+              className="w-6 md:w-8 mr-2"
               src="/whatssap.png"
               alt="WhatsApp Icon"
-              width={30}
-              height={30}
+              width={32}
+              height={32}
               priority
             />
-            Contact us
+            <span>Contact us</span>
           </Button>
         </a>
-      </section>
+      </motion.section>
 
-      {/* Section 2 */}
-      <section className="animate-slideInR flex flex-wrap justify-center items-center bg-slate-50 w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-xl px-6 pt-5 lg:p-10">
-        {services.map((image, index) => (
-          <div key={index} className="m-3 transition-transform duration-500 float-animation-1">
-            <Image
-              className="w-[100px] md:w-[150px] lg:w-[200px]"
-              src={image.src}
-              alt={image.alt}
-              width={1024}
-              height={300}
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </section>
+
+{/* Section 2 - Infinite floating animation */}
+<motion.section
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1.2, delay: 0.2 }}
+  className="grid grid-cols-2 gap-3 sm:gap-5 bg-gray-800/80 backdrop-blur-lg w-full lg:w-[45%] h-auto lg:h-[85%] rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8"
+>
+  {services.map((image, index) => (
+    <motion.div
+      key={index}
+      className="p-2 sm:p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl backdrop-blur-sm border-2 border-blue-200/20 flex items-center justify-center"
+      animate={{
+        y: [-5, 5], // Moves up and down
+        scale: [0.95, 1.05] // Gentle pulse effect
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        repeatType: 'mirror',
+        delay: index * 0.2,
+        ease: "easeInOut"
+      }}
+    >
+      <Image
+        className="w-full max-w-[100px] sm:max-w-[130px] md:max-w-[160px] lg:max-w-[200px]"
+        src={image.src}
+        alt={image.alt}
+        width={1024}
+        height={300}
+        loading="lazy"
+      />
+    </motion.div>
+  ))}
+</motion.section>
     </div>
   );
 }

@@ -51,18 +51,18 @@ export default function ContactUs() {
 
   return (
     <div
-      id="contact-us"
-      className={`${inter.className} min-h-screen xl:px-48 flex items-center bg-gradient-to-br from-indigo-50 to-blue-50 relative overflow-hidden`}
+      id="contact"
+      className={`${inter.className} min-h-screen xl:px-48 flex items-center bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden`}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -top-20 -left-20 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+          className="absolute -top-20 -left-20 w-96 h-96 bg-purple-800/20 rounded-full mix-blend-screen filter blur-3xl opacity-30"
           animate={{ rotate: 360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute -bottom-40 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+          className="absolute -bottom-40 right-0 w-96 h-96 bg-indigo-800/20 rounded-full mix-blend-screen filter blur-3xl opacity-30"
           animate={{ rotate: -360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         />
@@ -70,7 +70,7 @@ export default function ContactUs() {
 
       <div className="container mx-auto px-4 py-16 relative">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-gray-800/80 rounded-[2.5rem] shadow-2xl overflow-hidden border border-purple-900/50 backdrop-blur-lg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -78,7 +78,7 @@ export default function ContactUs() {
           transition={{ duration: 0.8 }}
         >
           {/* Left Panel - Contact Information */}
-          <div className="bg-gradient-to-br from-indigo-600 to-blue-600 p-12 text-white relative">
+          <div className="bg-gradient-to-br from-purple-900/80 to-indigo-900/80 p-12 text-purple-100 relative">
             <div className="absolute inset-0 opacity-10 bg-noise-pattern" />
             <motion.div
               className="relative"
@@ -95,14 +95,14 @@ export default function ContactUs() {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
-                    <FiMail className="text-2xl text-white/90" />
+                  <div className="p-3 bg-purple-900/50 rounded-xl backdrop-blur-sm border border-purple-800/50">
+                    <FiMail className="text-2xl text-purple-300" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 text-white/90">Email Us</h3>
+                    <h3 className="font-semibold mb-2 text-purple-300">Email Us</h3>
                     <a
                       href="mailto:logicraftagency@gmail.com"
-                      className="text-white/75 hover:text-white transition-colors duration-200"
+                      className="text-purple-200 hover:text-purple-100 transition-colors duration-200"
                     >
                       logicraftagency@gmail.com
                     </a>
@@ -114,12 +114,12 @@ export default function ContactUs() {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
-                    <FiPhone className="text-2xl text-white/90" />
+                  <div className="p-3 bg-purple-900/50 rounded-xl backdrop-blur-sm border border-purple-800/50">
+                    <FiPhone className="text-2xl text-purple-300" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 text-white/90">Call Us</h3>
-                    <p className="text-white/75 hover:text-white transition-colors duration-200">
+                    <h3 className="font-semibold mb-2 text-purple-300">Call Us</h3>
+                    <p className="text-purple-200 hover:text-purple-100 transition-colors duration-200">
                       +212 14 80 31 18
                     </p>
                   </div>
@@ -149,8 +149,8 @@ export default function ContactUs() {
                       setErrors(prev => ({ ...prev, name: false }));
                     }}
                     className={`w-full px-4 py-3 border-b-2 ${
-                      errors.name ? 'border-red-500' : 'border-gray-200'
-                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors peer`}
+                      errors.name ? 'border-red-400' : 'border-gray-600'
+                    } focus:border-purple-400 focus:outline-none bg-gray-800/20 transition-colors peer text-purple-100`}
                     placeholder=" "
                     required
                   />
@@ -159,11 +159,11 @@ export default function ContactUs() {
                     peer-[:not(:placeholder-shown)]:text-sm
                     peer-focus:-top-4
                     peer-focus:text-sm
-                    peer-focus:text-indigo-600">
+                    peer-focus:text-purple-400">
                     Name
                   </label>
                   {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">Name is required</p>
+                    <p className="text-red-400 text-sm mt-1">Name is required</p>
                   )}
                 </div>
 
@@ -177,8 +177,8 @@ export default function ContactUs() {
                       setErrors(prev => ({ ...prev, email: false }));
                     }}
                     className={`w-full px-4 py-3 border-b-2 ${
-                      errors.email ? 'border-red-500' : 'border-gray-200'
-                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors peer`}
+                      errors.email ? 'border-red-400' : 'border-gray-600'
+                    } focus:border-purple-400 focus:outline-none bg-gray-800/20 transition-colors peer text-purple-100`}
                     placeholder=" "
                     required
                   />
@@ -187,11 +187,11 @@ export default function ContactUs() {
                     peer-[:not(:placeholder-shown)]:text-sm
                     peer-focus:-top-4
                     peer-focus:text-sm
-                    peer-focus:text-indigo-600">
+                    peer-focus:text-purple-400">
                     Email
                   </label>
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">Valid email is required</p>
+                    <p className="text-red-400 text-sm mt-1">Valid email is required</p>
                   )}
                 </div>
 
@@ -204,8 +204,8 @@ export default function ContactUs() {
                       setErrors(prev => ({ ...prev, message: false }));
                     }}
                     className={`w-full px-4 py-3 border-b-2 ${
-                      errors.message ? 'border-red-500' : 'border-gray-200'
-                    } focus:border-indigo-600 focus:outline-none bg-transparent transition-colors min-h-[150px] peer`}
+                      errors.message ? 'border-red-400' : 'border-gray-600'
+                    } focus:border-purple-400 focus:outline-none bg-gray-800/20 transition-colors min-h-[150px] peer text-purple-100`}
                     placeholder=" "
                     required
                   />
@@ -214,18 +214,18 @@ export default function ContactUs() {
                     peer-[:not(:placeholder-shown)]:text-sm
                     peer-focus:-top-4
                     peer-focus:text-sm
-                    peer-focus:text-indigo-600">
+                    peer-focus:text-purple-400">
                     Message
                   </label>
                   {errors.message && (
-                    <p className="text-red-500 text-sm mt-1">Message is required</p>
+                    <p className="text-red-400 text-sm mt-1">Message is required</p>
                   )}
                 </div>
               </div>
 
               <Button
                 type="submit"
-                className="w-full group flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-5 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100"
+                className="w-full group flex items-center justify-center gap-2 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white py-5 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-900/30"
               >
                 <span className="font-semibold tracking-wide">Send Message</span>
                 <FiArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
