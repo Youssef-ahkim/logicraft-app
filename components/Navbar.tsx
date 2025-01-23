@@ -10,15 +10,15 @@ function Navbar() {
             <nav className="flex justify-between items-center py-4 px-6 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 shadow-2xl w-full border-b border-purple-900/50">
                 {/* Logo */}
                 <a href="#home" className='animate-logoSlideIn'>
-    <Image
-        className="cursor-pointer w-[120px] md:w-[180px] filter brightness-0 invert"
-        src="/logo.png"
-        alt="Company Logo"
-        width={180}
-        height={50}
-        sizes="(max-width: 800px) 120px, 180px"
-    />
-</a>
+                    <Image
+                        className="cursor-pointer w-[120px] md:w-[180px] filter brightness-0 invert"
+                        src="/logo.png"
+                        alt="Company Logo"
+                        width={180}
+                        height={50}
+                        sizes="(max-width: 800px) 120px, 180px"
+                    />
+                </a>
 
                 {/* Navigation Links */}
                 <ul className="hidden md:flex gap-8 text-lg font-medium text-purple-100">
