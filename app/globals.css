@@ -213,9 +213,7 @@ body {
   animation: linksFadeIn 1.5s ease-in-out;
 }
 
-.animate-buttonBounce {
-  animation: buttonBounce 1s ease-in-out infinite;
-}
+
 
 
 .animate-slideInL {
