@@ -52,7 +52,7 @@ export default function ContactUs() {
   return (
     <div
       id="contact"
-      className={`${inter.className} min-h-screen xl:px-48 flex items-center bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden`}
+      className={`${inter.className} min-h-screen xl:px-48 flex items-center bg-gradient-to-br  relative overflow-hidden`}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">

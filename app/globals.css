@@ -227,6 +227,40 @@ body {
 }
 
 
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes rotate-360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-360-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.bg-space-texture {
+  background-image: 
+    radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 80%),
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.03) 50%, transparent 51%);
+  background-size: 10px 10px, 6px 6px;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-rotate-360 {
+  animation: rotate-360 120s linear infinite;
+}
+
+.animate-rotate-360-reverse {
+  animation: rotate-360-reverse 140s linear infinite;
+}
+
 
 
 

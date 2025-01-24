@@ -28,7 +28,7 @@ export default function About() {
     return (
         <div
             id="about"
-            className={`${inter.className} flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-950 px-6 py-20 md:py-24 text-white overflow-hidden`}
+            className={`${inter.className} flex flex-col justify-center items-center min-h-screen bg-gradient-to-br  px-6 py-20 md:py-24 text-white overflow-hidden`}
         >
             {/* Header Section */}
             <motion.section

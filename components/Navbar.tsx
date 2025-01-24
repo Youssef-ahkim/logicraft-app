@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 function Navbar() {
     return (
         <>
-            <nav className="flex justify-between items-center py-4 px-6 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 shadow-2xl w-full border-b border-purple-900/50">
+            <nav className=" flex justify-between items-center py-4 px-6 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 shadow-2xl w-full border-b border-purple-900/50">
                 {/* Logo */}
                 <a href="#home" className='animate-logoSlideIn'>
                     <Image

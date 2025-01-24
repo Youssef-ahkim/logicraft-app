@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div
       id="home"
-      className={`${inter.variable} ${openSans.variable} pt-5 overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 px-4`}
+      className={`${inter.variable} ${openSans.variable} pt-5  overflow-hidden h-[89vh] flex flex-col lg:flex-row justify-evenly items-center gap-[2%] bg-gradient-to-br  px-4`}
     >
       {/* Section 1 */}
       <section

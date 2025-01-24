@@ -71,7 +71,7 @@ export default function Pricing() {
   return (
     <div
       id="services"
-      className="min-h-screen flex flex-col justify-center items-center px-5 py-12 bg-gradient-to-br from-purple-900 via-indigo-900 to-gray-900 overflow-hidden"
+      className="min-h-screen flex flex-col justify-center items-center px-5 py-12 bg-gradient-to-br  overflow-hidden"
     >
       {/* Title Section */}
       <div 
