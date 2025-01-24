@@ -141,7 +141,7 @@ body {
 
 @keyframes slideInL {
   0% {
-      transform: translateX(-100%);
+      transform: translateX(-35%);
       opacity: 0;
   }
   100% {
@@ -151,7 +151,7 @@ body {
 }
 @keyframes slideInR {
   0% {
-      transform: translateX(+100%);
+      transform: translateX(+35%);
       opacity: 0;
   }
   100% {
