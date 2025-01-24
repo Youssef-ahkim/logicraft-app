@@ -29,7 +29,7 @@ function Navbar() {
                 </ul>
 
                 {/* WhatsApp Button */}
-                <a href="https://wa.me/+212614803118" target="_blank" rel="noopener noreferrer" className="flex">
+                <a href="https://wa.me/+212614803118" target="_blank" rel="noopener noreferrer" className="flex animate-slideInR">
                     <Button className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-2 px-4 rounded transition shadow-lg">
                         <Image
                             className="w-[20px] animate-iconSpin brightness-125 mr-2"
