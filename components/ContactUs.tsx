@@ -34,7 +34,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div id="contact" className={`${inter.className} min-h-screen flex items-center relative overflow-hidden`}>
+    <div id="contact" className={`${inter.className} xl:p-20 min-h-screen flex items-center relative overflow-hidden`}>
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
