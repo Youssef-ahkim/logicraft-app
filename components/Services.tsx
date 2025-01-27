@@ -25,6 +25,18 @@ const poppins = Poppins({
 const pricingPlans: PricingPlan[] = [
   {
     name: "Basic",
+    price: "1499 Dh",
+    oldPrice: "2000 Dh",
+    features: [
+      "Company Setup",
+      "Registered Agent",
+      "EIN Number",
+      "BOI Form",
+      "US Phone Number",
+    ],
+  },
+  {
+    name: "Standard",
     price: "2499 Dh",
     oldPrice: "4000 Dh",
     features: [
@@ -40,7 +52,7 @@ const pricingPlans: PricingPlan[] = [
     ],
   },
   {
-    name: "Standard",
+    name: "Premium",
     price: "3999 Dh",
     oldPrice: "6000 Dh",
     features: [
@@ -113,7 +125,6 @@ export default function Pricing() {
     </div>
   );
 }
-
 function PricingCard({ plan, index }: PricingCardProps) {
   const { ref, inView } = useInView(observerOptions);
 
@@ -126,7 +137,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
           : 'opacity-0 translate-y-20'
       } ${
         index % 2 === 0 ? 'delay-400' : 'delay-800'
-      }`}
+      } flex flex-col`} // Add flex and flex-col here
     >
       {/* Gradient overlay */}
       <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
@@ -134,7 +145,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
       </div>
 
       {/* Popular ribbon */}
-      {index === 0 && (
+      {index === 1 && (
         <div className="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-1 rounded-full text-sm font-bold transform rotate-3 shadow-lg">
           Most Popular
         </div>
@@ -168,16 +179,18 @@ function PricingCard({ plan, index }: PricingCardProps) {
       </ul>
 
       {/* CTA Button */}
-      <a
-        href="https://wa.me/+212614803118"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full"
-      >
-        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white py-6 rounded-xl text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105">
-          Get Started
-        </Button>
-      </a>
+      <div className="mt-auto"> {/* Add mt-auto here to push the button to the bottom */}
+        <a
+          href="https://wa.me/+212614803118"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full"
+        >
+          <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white py-6 rounded-xl text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105">
+            Get Started
+          </Button>
+        </a>
+      </div>
     </div>
   );
 }
