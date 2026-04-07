@@ -1,49 +1,137 @@
-"use client"
+"use client";
 
-import Image from 'next/image';
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
-function Navbar() {
-    return (
-        <>
-            <nav className=" flex justify-between items-center py-4 px-6 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 shadow-2xl w-full border-b border-purple-900/50">
-                {/* Logo */}
-                <a href="#home" className='animate-logoSlideIn'>
-                    <Image
-                        className="cursor-pointer w-[120px] md:w-[180px] filter brightness-0 invert"
-                        src="/logo.png"
-                        alt="Company Logo"
-                        width={180}
-                        height={50}
-                        sizes="(max-width: 800px) 120px, 180px"
-                    />
-                </a>
+const navLinks = [
+  { label: "Home",     href: "#home"     },
+  { label: "Services", href: "#services" },
+  { label: "About",    href: "#about"    },
+  { label: "Contact",  href: "#contact"  },
+];
 
-                {/* Navigation Links */}
-                <ul className="hidden md:flex gap-8 text-lg font-medium text-purple-100">
-                    <li className="hover:text-purple-400 transition animate-linksFadeIn"><a href="#home">Home</a></li>
-                    <li className="hover:text-purple-400 transition animate-linksFadeIn"><a href="#services">Our Services</a></li>
-                    <li className="hover:text-purple-400 transition animate-linksFadeIn"><a href="#about">About</a></li>
-                    <li className="hover:text-purple-400 transition animate-linksFadeIn"><a href="#contact">Contact</a></li>
-                </ul>
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-                {/* WhatsApp Button */}
-                <a href="https://wa.me/+212614803118" target="_blank" rel="noopener noreferrer" className="flex animate-slideInR">
-                    <Button className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-2 px-4 rounded transition shadow-lg">
-                        <Image
-                            className="w-[20px] animate-iconSpin brightness-125 mr-2"
-                            src="/whatssap.png"
-                            alt="WhatsApp Icon"
-                            width={60}
-                            height={60}
-                        />
-                        Contact us
-                    </Button>
-                </a>
-            </nav>
-        </>
-    );
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "navbar-glass shadow-lg shadow-black/30" : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
+        {/* Logo */}
+        <a href="#home" className="shrink-0 hero-fade-up anim-delay-1">
+          <Image
+            src="/logo.png"
+            alt="Logicraft Logo"
+            width={160}
+            height={48}
+            className="h-9 w-auto filter brightness-0 invert"
+            priority
+          />
+        </a>
+
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-7">
+          {navLinks.map((link, i) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className={`nav-link hero-fade-up anim-delay-${i + 2}`}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA + hamburger */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://wa.me/+212614803118"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex hero-fade-up anim-delay-5"
+          >
+            <button className="btn-primary btn-whatsapp text-sm py-2.5 px-5">
+              <span className="flex items-center gap-1.5">
+                <Image
+                  src="/whatssap.png"
+                  alt="WhatsApp"
+                  width={18}
+                  height={18}
+                  className="brightness-0 invert"
+                />
+                <span>Contact Us</span>
+              </span>
+            </button>
+          </a>
+
+          {/* Hamburger */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle navigation"
+            aria-expanded={open}
+          >
+            <span
+              className={`block h-0.5 bg-slate-300 rounded-full transition-all duration-300 ${
+                open ? "w-5 rotate-45 translate-y-[7px]" : "w-5"
+              }`}
+            />
+            <span
+              className={`block h-0.5 bg-slate-300 rounded-full transition-all duration-300 ${
+                open ? "opacity-0 w-5" : "w-4"
+              }`}
+            />
+            <span
+              className={`block h-0.5 bg-slate-300 rounded-full transition-all duration-300 ${
+                open ? "w-5 -rotate-45 -translate-y-[7px]" : "w-3"
+              }`}
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu md:hidden ${open ? "open" : ""}`}>
+        <ul className="flex flex-col px-5 py-4 gap-4">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="nav-link text-base block py-1"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="https://wa.me/+212614803118"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              <button className="btn-primary btn-whatsapp text-sm w-full py-3 mt-1">
+                <span className="flex items-center justify-center gap-2">
+                  <Image src="/whatssap.png" alt="WhatsApp" width={18} height={18} className="brightness-0 invert" />
+                  <span>Chat on WhatsApp</span>
+                </span>
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+  );
 }
-
-export default Navbar;

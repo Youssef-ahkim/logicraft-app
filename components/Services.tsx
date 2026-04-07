@@ -1,32 +1,23 @@
 "use client";
 
-import { Poppins } from 'next/font/google';
-import { Button } from "@/components/ui/button";
-import { FiCheckCircle } from 'react-icons/fi';
-import { useInView, IntersectionOptions } from 'react-intersection-observer';
+import { useEffect, useRef } from "react";
+import { FiCheckCircle } from "react-icons/fi";
 
 type PricingPlan = {
   name: string;
   price: string;
   oldPrice: string;
+  tag?: string;
+  accent: string;
   features: string[];
 };
 
-type PricingCardProps = {
-  plan: PricingPlan;
-  index: number;
-};
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
-
 const pricingPlans: PricingPlan[] = [
   {
-    name: "Basic",
-    price: "1499 Dh",
-    oldPrice: "2000 Dh",
+    name: "Starter",
+    price: "1,499 Dh",
+    oldPrice: "2,000 Dh",
+    accent: "from-indigo-500 to-blue-500",
     features: [
       "Company Setup",
       "Registered Agent",
@@ -37,8 +28,10 @@ const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Standard",
-    price: "2499 Dh",
-    oldPrice: "4000 Dh",
+    price: "2,499 Dh",
+    oldPrice: "4,000 Dh",
+    tag: "Most Popular",
+    accent: "from-violet-500 to-purple-600",
     features: [
       "Company Setup",
       "Registered Agent",
@@ -53,8 +46,9 @@ const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Premium",
-    price: "3999 Dh",
-    oldPrice: "6000 Dh",
+    price: "3,999 Dh",
+    oldPrice: "6,000 Dh",
+    accent: "from-pink-500 to-rose-600",
     features: [
       "Company Setup",
       "Registered Agent",
@@ -65,132 +59,138 @@ const pricingPlans: PricingPlan[] = [
       "Mercury Business",
       "Wise Business",
       "PayPal Business",
-      "2 Stripes",
+      "2× Stripe Accounts",
     ],
   },
 ];
 
-const observerOptions: IntersectionOptions = {
-  triggerOnce: true,
-  threshold: 0.05,
-  rootMargin: '-50px 0px',
-};
-
-export default function Pricing() {
-  const { ref: titleRef, inView: titleInView } = useInView(observerOptions);
-  const { ref: bottomRef, inView: bottomInView } = useInView(observerOptions);
-
-  return (
-    <div
-      id="services"
-      className="min-h-screen flex flex-col justify-center items-center px-5 py-12 bg-gradient-to-br  overflow-hidden"
-    >
-      {/* Title Section */}
-      <div 
-        ref={titleRef}
-        className={`w-full text-center mb-14 transition-opacity duration-2000 will-change-transform ${
-          titleInView ? 'opacity-100' : 'opacity-0 translate-y-10'
-        }`}
-      >
-        <h1 className={`${poppins.className} text-4xl md:text-5xl font-black text-white mb-4`}>
-          Business Packages
-        </h1>
-        <p className="text-lg text-purple-200 max-w-2xl mx-auto">
-          Choose the perfect package to launch your US business with confidence
-        </p>
-      </div>
-
-      {/* Pricing Cards */}
-      <div className="flex flex-wrap justify-center gap-8 px-4">
-        {pricingPlans.map((plan, index) => (
-          <PricingCard key={plan.name} plan={plan} index={index} />
-        ))}
-      </div>
-
-      {/* Bottom Text */}
-      <div
-        ref={bottomRef}
-        className={`mt-12 text-center text-purple-300 text-sm transition-opacity duration-2000 will-change-transform ${
-          bottomInView ? 'opacity-100' : 'opacity-0 translate-y-10'
-        }`}
-      >
-        Need custom solutions? Contact us at{' '}
-        <a
-          href="mailto:logicraftagency@gmail.com"
-          className="underline decoration-2 underline-offset-4 hover:decoration-pink-400 transition-all duration-300 text-white"
-        >
-          logicraftagency@gmail.com
-        </a>
-      </div>
-    </div>
-  );
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("visible");
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "-40px 0px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
 }
-function PricingCard({ plan, index }: PricingCardProps) {
-  const { ref, inView } = useInView(observerOptions);
+
+function PricingCard({ plan, index }: { plan: PricingPlan; index: number }) {
+  const ref = useReveal();
+  const isPopular = !!plan.tag;
 
   return (
     <div
       ref={ref}
-      className={`relative w-full sm:w-[350px] bg-gray-800 rounded-2xl p-8 border-2 border-purple-900/50 transition-all duration-1000 ease-out shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 will-change-transform ${
-        inView 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-20'
-      } ${
-        index % 2 === 0 ? 'delay-400' : 'delay-800'
-      } flex flex-col`} // Add flex and flex-col here
+      className="reveal relative flex flex-col w-full sm:max-w-[340px] overflow-hidden rounded-2xl shine-border"
+      style={{ transitionDelay: `${index * 0.15}s` }}
     >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl" />
-      </div>
-
-      {/* Popular ribbon */}
-      {index === 1 && (
-        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-1 rounded-full text-sm font-bold transform rotate-3 shadow-lg">
-          Most Popular
-        </div>
+      {/* Glow ring for popular */}
+      {isPopular && (
+        <div className="absolute inset-0 rounded-2xl pointer-events-none z-0"
+          style={{ boxShadow: "0 0 0 1.5px rgba(167,139,250,0.5), 0 0 50px rgba(139,92,246,0.2)" }}
+        />
       )}
 
-      {/* Plan Header */}
-      <div className="mb-6 text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">{plan.name}</h2>
-        <div className="flex items-center justify-center gap-3">
-          <span className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            {plan.price}
-          </span>
-          <span className="text-lg text-purple-300 line-through">{plan.oldPrice}</span>
+      {/* Card inner */}
+      <div className={`relative z-10 flex flex-col h-full glass-card glass-card-hover p-7 sm:p-8`}>
+        {/* Popular badge */}
+        {plan.tag && (
+          <div className="popular-badge absolute -top-px right-6 px-3 py-1 text-white rounded-b-lg font-bold tracking-wider z-20">
+            {plan.tag}
+          </div>
+        )}
+
+        {/* Header */}
+        <div className="mb-6">
+          {/* Accent dot line */}
+          <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${plan.accent} mb-4`} />
+          <h3 className="text-xl font-bold text-white mb-3">{plan.name}</h3>
+          <div className="flex items-end gap-2">
+            <span className={`text-4xl font-black bg-gradient-to-r ${plan.accent} bg-clip-text text-transparent`}>
+              {plan.price}
+            </span>
+            <span className="text-slate-400 line-through text-sm mb-1">{plan.oldPrice}</span>
+          </div>
         </div>
-      </div>
 
-      {/* Features List */}
-      <ul className="mb-8 space-y-3">
-        {plan.features.map((feature, i) => (
-          <li 
-            key={feature}
-            className={`flex items-center gap-3 text-purple-100 transition-opacity duration-700 ${
-              inView ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transitionDelay: `${i * 150}ms` }}
-          >
-            <FiCheckCircle className="flex-shrink-0 text-pink-400" />
-            <span className="flex-1">{feature}</span>
-          </li>
-        ))}
-      </ul>
+        {/* Features */}
+        <ul className="flex flex-col gap-2.5 mb-8 flex-1">
+          {plan.features.map((f) => (
+            <li key={f} className="flex items-center gap-2.5 text-slate-300 text-sm">
+              <FiCheckCircle className="shrink-0 text-purple-400 w-4 h-4" />
+              {f}
+            </li>
+          ))}
+        </ul>
 
-      {/* CTA Button */}
-      <div className="mt-auto"> {/* Add mt-auto here to push the button to the bottom */}
+        {/* CTA */}
         <a
           href="https://wa.me/+212614803118"
           target="_blank"
           rel="noopener noreferrer"
           className="block w-full"
         >
-          <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white py-6 rounded-xl text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105">
+          <button
+            className={`w-full py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r ${plan.accent} 
+              hover:opacity-90 hover:shadow-lg transition-all duration-200 active:scale-[0.98]`}
+          >
             Get Started
-          </Button>
+          </button>
         </a>
       </div>
     </div>
+  );
+}
+
+export default function Services() {
+  const titleRef = useReveal();
+  const bottomRef = useReveal();
+
+  return (
+    <section id="services" className="relative py-24 px-6 overflow-hidden">
+      {/* Section header */}
+      <div ref={titleRef} className="reveal text-center mb-16 max-w-2xl mx-auto">
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-purple-400 mb-3">Pricing</p>
+        <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+          Business{" "}
+          <span className="gradient-text">Packages</span>
+        </h2>
+        <p className="text-slate-400 text-lg">
+          Choose the perfect plan to launch your US business with confidence.
+        </p>
+      </div>
+
+      {/* Cards */}
+      <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto px-2">
+        {pricingPlans.map((plan, i) => (
+          <PricingCard key={plan.name} plan={plan} index={i} />
+        ))}
+      </div>
+
+      {/* Bottom note */}
+      <div ref={bottomRef} className="reveal text-center mt-14 delay-300">
+        <p className="text-slate-400 text-sm">
+          Need custom solutions?{" "}
+          <a
+            href="mailto:logicraftagency@gmail.com"
+            className="text-purple-300 hover:text-white underline underline-offset-4 transition-colors duration-200"
+          >
+            logicraftagency@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <div className="section-divider mt-16" />
+    </section>
   );
 }
