@@ -98,6 +98,9 @@ export const metadata: Metadata = {
   category: "Business Services",
   creator: "Logicraft Agency",
   publisher: "Logicraft Agency",
+  verification: {
+    google: "bWnqsNP-V0CMi7FzbYsPmEhBGrGtM9myyXUvGqQUrso",
+  },
 };
 
 /* ── JSON-LD Structured Data ── */
